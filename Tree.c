@@ -2,7 +2,7 @@
 #include <stdlib.h> 
 #include <math.h>
 #include "definition.h"
-#include <conio.h>
+
 
 int main(int argc, char *argv[]) {
 	SearchTree Tree;
