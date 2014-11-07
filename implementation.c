@@ -14,9 +14,10 @@ SearchTree MakeEmpty (SearchTree T)//把一棵树清空
 		MakeEmpty(T->Right);
 		free(T);		
 	}
+
 }
 
-Position Find(int X,SearchTree T)//查找元素X的位置
+/*Position Find(int X,SearchTree T)//查找元素X的位置
 {
 	if(T==null)
 	{
@@ -28,7 +29,46 @@ Position Find(int X,SearchTree T)//查找元素X的位置
 				return Find(X,T->Right);
 			 else
 			 	return T;		
+} */ 
+int FindMid(int X,SearchTree T)//查找元素X的位置
+{
+	int num=0;
+	if(T==null)
+	{
+		//printf("错误：二叉树为空");
+		return 0;
+	}
+	else
+	{
+		if(X<T->Element)
+			 num = FindMid(X,T->Left);
+		else if(X>T->Element)
+				num = FindMid(X,T->Right)+FindMid(T->Element,T);
+			 else
+			 	num=Num(T->Left)+1;	
+	} 	
+	return num;	 	
 } 
+
+int FindPre(int X,SearchTree T)//查找元素X的先序遍历位置
+{
+	int num=0;
+	if(T==null)
+	{
+		//printf("错误：二叉树为空");
+		return 0;
+	}
+	else
+	{
+		if(X<T->Element)
+			 num = FindPre(X,T->Left)+1;
+		else if(X>T->Element)
+				num = FindPre(X,T->Right)+Num(T->Left)+1;
+			 else
+			 	num=1;	
+	} 	
+	return num;	 	
+}
 
 Position FindMin(SearchTree T)//找到树中的最小值，并返回位置指针
 {
@@ -242,12 +282,13 @@ void PrintPre(SearchTree T)//先序遍历打印出来
 	else
 	{
 		if(T->Left!=null)
-			PrintMid(T->Left);		
+			PrintPre(T->Left);		
 		
 		if(T->Right!=null)
-			PrintMid(T->Right);
+			PrintPre(T->Right);
 			
 		printf(" %d ",T->Element );
+		
 	}
 }	
 	
@@ -324,9 +365,43 @@ void ReOrder(SearchTree T)//对二叉树的重新排布
 	}
 }
 
+		
+int Num(SearchTree T)//一个二叉树中有多少个元素	
+{
+	int sum=0;
+//	number=0;
+	if(T==null)
+	{	
+		return 0;
+	}
 	
-	
-	
+/*else
+	{
+		if(T->Left!=null)
+			PrintMid(T->Left);
+			
+		printf(" %d ",T->Element );
+		
+		if(T->Right!=null)
+			PrintMid(T->Right);
+	}*/
+	else
+	{
+		if(T->Left!=null)
+		  {
+		  	//number+=Num(T->Left);
+		  	sum+=Num(T->Left);
+		  }
+		  //number++;
+		  sum++;
+		  if(T->Right!=null)
+			//number+=Num(T->Right);
+			sum+=Num(T->Right);
+	} 
+	//sum=number;
+//	number=0;
+	return sum;
+}
 	
 	
 	

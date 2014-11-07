@@ -6,8 +6,10 @@ struct TreeNode;
 typedef struct TreeNode* Position;
 typedef struct TreeNode* SearchTree;
 
-SearchTree MakeEmpty (SearchTree T);//建立空树
-Position Find(int X,SearchTree T);//查找元素X的位置
+//SearchTree MakeEmpty (SearchTree T);//建立空树
+//Position Find(int X,SearchTree T);//查找元素X的位置
+int FindMid(int X,SearchTree T);//查找元素X的中序遍历位置
+int FindPre(int X,SearchTree T);//查找元素X的先序遍历位置
 Position FindMin(SearchTree T);//找到树中的最小值，并返回位置指针
 Position FindMax(SearchTree T);//找到树中的最大值，并返回位置指针
 SearchTree Insert(int X,SearchTree T);//插入
@@ -15,7 +17,7 @@ SearchTree Delete(int X,SearchTree T);//删除
 int Height(Position P);//计算AVL节点的高度 
 int Max(int T1,int T2);//得到最大深度 
 int Retrieve(Position P);//
-
+int Num(SearchTree T);//一个二叉树中有多少个元素
 Position SingleRotateLeft(Position K2);//
 Position SingleRotateRight(Position K2);//
 Position DoubleRotateLeft(Position K3);//
@@ -26,7 +28,8 @@ void PrintPre(SearchTree T);//先序遍历打印出来
 void Print(SearchTree Tree);//打印出二叉树，中序+先序 
 void ReOrder(SearchTree T);
 
-SearchTree  Tree;
+SearchTree  Tree;//全局变量,用于解决删除问题的重新排列 
+//int number=0;//记录一个二叉树中有多少个元素 
 struct TreeNode//树节点的定义 
 {
 	int Element;

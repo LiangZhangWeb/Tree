@@ -2,14 +2,14 @@
 #include <stdlib.h> 
 #include <math.h>
 #include "definition.h"
-//#include <conio.h>
+#include <conio.h>
 
 int main(int argc, char *argv[]) {
 	SearchTree Tree;
-	Tree=null;
+N:	Tree=null;
 	int temp;
 	int flag=0;//菜单选择项 
-N:  printf("请输入数据，以-1结束:\n");
+  printf("请输入数据，以-1结束:\n");
 	scanf("%d",&temp);
 	while(temp!=-1)
 	{
@@ -85,7 +85,8 @@ N:  printf("请输入数据，以-1结束:\n");
 						{
 							printf("请输入要查询的数字\n");
 							scanf("%d",&temp);
-							printf("%d元素的深度是：%d",temp,Find(temp,Tree)->Height);
+							printf("%d是中序遍历的序号是：%d\n",temp,FindMid(temp,Tree));
+							printf("%d是先序遍历的序号是：%d\n",temp,FindPre(temp,Tree));
 							break;
 						}
 					case 5:
